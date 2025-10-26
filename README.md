@@ -31,5 +31,5 @@
 - 未完待续...
 
 ### 其他  
-- git指令可以参考 [郭hy[著] -- Git使用指南](docs/Git使用指南.md)，另外建议大家多学一些git指令以应对多种情况[git在线学习](https://learngitbranching.js.org/?locale=zh_CN)
+- git指令可以参考 [郭泓邑[著] -- Git使用指南](docs/Git使用指南.md)，另外建议大家多学一些git指令以应对多种情况[git在线学习](https://learngitbranching.js.org/?locale=zh_CN)
 - 本届技术部将在12月中旬选定一日进行集中面试，筛选成员加入不洗碗工作室
