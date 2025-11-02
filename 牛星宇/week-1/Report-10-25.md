@@ -1,4 +1,3 @@
-<doubaocanvas identifier="java-study-notes-weekly" title="Java学习笔记周报（多线程、IO流、File用法）" genre="学习笔记" type="text/markdown">
 # Java学习笔记周报
 
 **核心学习内容**：Java多线程编程、IO流操作、File类用法  
