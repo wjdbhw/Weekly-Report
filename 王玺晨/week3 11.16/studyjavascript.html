@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        console.log("Hello, World!");
+        alert("warning:this is not a warning");
+        let x=100000000000000000000000000000000000;
+        console.log(x);
+        x=1;
+        console.log(x);
+        for(let i=0;i<10;i++){
+            if(i<3){
+                console.log("i is less than 3");
+            }
+            else if(i<6){
+                console.log("i is less than 6");
+            }
+            else{
+                console.log("i is 6 or more");
+            }
+        }
+        function outputValues(x) {
+            console.log(x);
+        }
+        outputValues(1145);
+    </script>
+    
+</head>
+<body>
+    <button onclick="outputValues(x)">Click me</button>
+    <div id="1">输入文本</div>
+    <script>
+        var a = document.getElementById("1");
+        a.innerText="123";
+    </script>
+</body>
+</html>
