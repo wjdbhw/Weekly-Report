@@ -1,0 +1,66 @@
+body {
+    font: 16px/28px 'Microsoft YaHei';
+
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+        url("Xu_Guang_image/qing.jpg") no-repeat center/cover;
+
+
+}
+
+h1 {
+    /* 文字不加粗，并且水平居中*/
+    text-align: center;
+    font-weight: 400;
+}
+
+.gray {
+    color: #888888;
+    font-size: 12px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #17bb11;
+}
+
+.search {
+    color: #666;
+    width: 170px;
+}
+
+.btn {
+    text-align: center;
+    background-color: #e1de5b;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+p {
+    text-indent: 2em;
+    text-align: left;
+    /* 段落本身恢复左对齐 */
+    margin: 0 0 1em 0;
+}
+
+.footer {
+    text-align: right;
+    font-size: 10px;
+    color: #555;
+    margin-top: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}

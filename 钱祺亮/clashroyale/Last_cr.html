@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>neu(q)皇室战争线下锦标赛 - 欢迎入场</title>
+
+    <!-- 预加载音效 -->
+    <link rel="preload" as="audio" href="audio/start.mp3">
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 背景动画星星 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 头部标题区域 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* 左侧信息卡片 */
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            animation: fadeInLeft 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .info-card h2 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .event-info {
+            color: #fff;
+            line-height: 1.8;
+        }
+
+        .event-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-info .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            background: #ffd700;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* 右侧视频区域 */
+        .image-section {
+            animation: fadeInRight 1s ease-out 0.7s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-wrapper button {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffd700;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 底部按钮区域 */
+        .action-section {
+            text-align: center;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .welcome-button {
+            display: inline-block;
+            padding: 20px 60px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .welcome-button:active {
+            transform: translateY(-1px);
+        }
+
+        .welcome-button::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+            transition: all 0.6s ease;
+        }
+
+        .welcome-button:hover::after {
+            transform: rotate(30deg) translate(100%, 100%);
+        }
+
+        /* 装饰元素 */
+        .decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .decoration-2 {
+            top: 60%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        .decoration-3 {
+            bottom: 10%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* 入场动画 */
+        .entrance-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .entrance-animation.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .crown-icon {
+            font-size: 100px;
+            animation: crownSpin 1s ease-out;
+        }
+
+        @keyframes crownSpin {
+            0% {
+                transform: rotate(0deg) scale(0);
+            }
+
+            50% {
+                transform: rotate(180deg) scale(1.2);
+            }
+
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+
+        /* 欢迎页淡入 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .video-wrapper {
+                height: 300px;
+            }
+
+            .welcome-button {
+                padding: 15px 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <link rel="icon" href="image/neuq.png" type="image/png">
+</head>
+
+<body>
+    <!-- 背景星星 -->
+    <div class="stars" id="stars"></div>
+
+    <!-- 装饰元素 -->
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+    <div class="decoration decoration-3"></div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 头部标题 -->
+        <header class="header">
+            <h1 class="main-title">⚔️ neu(q)皇室战争校内赛 ⚔️</h1>
+            <p class="subtitle">欢迎来到史诗般的对战盛宴！</p>
+        </header>
+
+        <!-- 主要内容 -->
+        <main class="main-content">
+            <!-- 左侧信息卡片 -->
+            <div class="info-card">
+                <h2>📅 赛事信息</h2>
+                <div class="event-info">
+                    <p><span class="icon">📍</span> 线下地点：东北大学秦皇岛分校工学馆</p>
+                    <p><span class="icon">🕐</span> 时间：2025年9月28日 20:30</p>
+                    <p><span class="icon">👥</span> 参赛人数：64人</p>
+                    <p><span class="icon">🏆</span> 奖金池：200元</p>
+                </div>
+            </div>
+
+            <!-- 右侧视频区域 -->
+            <div class="image-section">
+                <div class="video-wrapper">
+                    <video id="bgVideo" autoplay loop muted playsinline>
+                        <source src="image/dota.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部按钮 -->
+        <section class="action-section">
+            <button class="welcome-button" onclick="startEntrance()">
+                🎮 立即入场 🎮
+            </button>
+        </section>
+    </div>
+
+    <!-- 入场动画 -->
+    <div class="entrance-animation" id="entranceAnimation">
+        <div class="crown-icon">👑</div>
+    </div>
+
+    <script>
+        /* ---------- 基础功能 ---------- */
+        // 生成背景星星
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // 视频播放/暂停
+        const video = document.getElementById('bgVideo');
+        const btn = document.getElementById('playPauseBtn');
+        const playIcon = '▶';
+        const pauseIcon = '❚❚';
+        btn.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                btn.textContent = pauseIcon;
+            } else {
+                video.pause();
+                btn.textContent = playIcon;
+            }
+        });
+
+        /* ---------- 欢迎页 + 3 秒返回 ---------- */
+        function startEntrance() {
+            /* 音频：立即播放 + 解锁 + 容错 */
+            const audio = new Audio('audio/start.mp3');
+            audio.volume = 1;
+            audio.play().catch(e => console.log('音频播放失败：', e));
+
+            /* 欢迎页代码保持原样 */
+            const welcome = document.createElement('div');
+            welcome.id = 'seatLayer';
+            welcome.style.cssText = `
+        position: fixed; inset: 0; z-index: 99;
+        background: url("image/seat.jpg") center/cover no-repeat;
+        display: flex; align-items: center; justify-content: center;
+        animation: fadeIn 0.6s ease;
+    `;
+            const txt = document.createElement('div');
+            txt.style.cssText = `
+        color: #fff; font-size: 2.5rem; font-weight: bold;
+        text-shadow: 0 0 10px #000;
+    `;
+            txt.textContent = '欢迎您的到来，请入座';
+            welcome.appendChild(txt);
+            document.body.appendChild(welcome);
+
+            setTimeout(() => {
+                welcome.remove();
+                restartHomeAnimation();
+            }, 3000);
+        }
+
+
+        /* ---------- 重播主页动画 ---------- */
+        function restartHomeAnimation() {
+            const container = document.querySelector('.container');
+            const parent = container.parentElement;
+            const newContainer = container.cloneNode(true);
+            parent.replaceChild(newContainer, container);
+
+            document.getElementById('stars').innerHTML = '';
+            createStars();
+            bindParallax();
+        }
+
+        function bindParallax() {
+            document.addEventListener('mousemove', (e) => {
+                const decorations = document.querySelectorAll('.decoration');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                decorations.forEach((dec, i) => {
+                    const speed = (i + 1) * 0.5;
+                    dec.style.transform = `translate(${(x - 0.5) * speed * 20}px, ${(y - 0.5) * speed * 20}px)`;
+                });
+            });
+        }
+
+        /* ---------- 初始化 ---------- */
+        window.addEventListener('load', () => {
+            createStars();
+            bindParallax();
+        });
+    </script>
+</body>
+
+</html>

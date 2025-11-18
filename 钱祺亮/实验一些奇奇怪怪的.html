@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qql加训</title>
+    <style>
+      .nav a {
+        display: inline-block;
+        width: 160px;
+        height: 70px;
+        background-color: pink;
+        /* 啊啊啊 */
+        text-align: center;
+        line-height: 70px;
+        color: greenyellow;
+        text-decoration: none;
+      }
+
+      .nav a:hover {
+        background-color: orange;
+        color: white;
+      }
+
+      .nav .bg1 {
+        background: url(wallpaper.jpg) no-repeat;
+        background-size: cover;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      li[class] {
+        font-size: 120%;
+      }
+
+      li[class="a"] {
+        background-color: yellow;
+      }
+
+      li[class~="a"] {
+        color: red;
+      }
+
+      article p::first-line {
+        font-size: 120%;
+        font-weight: bold;
+        color: rgb(99, 99, 243);
+        text-shadow: 2px 2px 2px rgb(106, 228, 118);
+      }
+
+      .box::before {
+        content: "➥";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <a
+        href="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Styling_basics/Pseudo_classes_and_elements"
+        class="bg1"
+        >MDN文档</a
+      >
+      <a href="https://github.com/settings/keys">github仓库</a>
+      <a href="http://www.bilibili.com">bilibili</a>
+      <a
+        class="page-not-created"
+        data-href="/zh-CN/Learn/Getting_started_with_the_web/Installing_basic_software"
+        title="此文档尚未被撰写，期待你的贡献！"
+        >安装了基本的软件</a
+      >
+      <a href="#">五彩导航</a>
+    </div>
+    <h1>Attribute presence and value selectors</h1>
+    <ul>
+      <li>Item 1</li>
+      <li class="a">Item 2</li>
+      <li class="a b">Item 3</li>
+      <li class="ab">Item 4</li>
+    </ul>
+    <article>
+      <p>
+        蔬菜对你有好处，所以你需要多吃大头菜、大葱、白萝卜、苋菜、番茄酱、甜瓜、红豆、大蒜。
+      </p>
+
+      <p>
+        秋葵浓汤、甜菜叶、玉米、鸡冠菜、菊苣、秋葵浓汤、葫芦。欧芹、葱、西葫芦、塌棵菜、豌豆芽、蚕豆、羽衣甘蓝、蒲公英、秋葵、裙带菜、番茄。蒲公英、黄瓜、花生、豌豆、花生、鸡冠菜、西葫芦。
+      </p>
+    </article>
+    <p class="box">我的 HTML 页面的盒子中的内容。</p>
+  </body>
+</html>
