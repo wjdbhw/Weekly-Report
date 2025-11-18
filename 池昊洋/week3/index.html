@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 替换为新的精致CSS样式，保留原有变量名逻辑 -->
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 聊天容器：改为Flex布局，实现主区域+侧边栏横向排列 */
+.chat-container {
+    display: flex;
+    gap: 20px;
+    height: 80vh;
+    min-height: 600px;
+}
+
+/* 聊天主区域：占比3份，垂直Flex布局 */
+.chat-main {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border: none; /* 取消原有边框，适配新阴影风格 */
+}
+
+/* 侧边栏：占比1份，白色背景+阴影 */
+.chat-sidebar {
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+/* 聊天头部：蓝色背景+白色文字 */
+.chat-header {
+    background-color: #165DFF;
+    color: white;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-bottom: none; /* 取消原有下边框，适配新风格 */
+}
+
+/* 消息列表：弹性占满空间，保留滚动 */
+.messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    background-color: #fff;
+    height: auto; /* 取消固定高度，改为弹性占满 */
+}
+
+/* 通用消息样式：添加渐入动画 */
+.message {
+    margin-bottom: 15px;
+    max-width: 80%;
+    clear: both; /* 保留原有清除浮动逻辑 */
+    animation: fadeIn 0.3s ease; /* 新增消息渐入动画 */
+    padding: 0; /* 取消原有内边距，改为内容区控制 */
+    border-radius: 0; /* 取消原有圆角，改为内容区控制 */
+    border: none; /* 取消原有边框，改为内容区控制 */
+}
+
+/* 消息渐入动画定义 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 系统消息：居中显示，窄宽度 */
+.message.system {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+    background-color: transparent; /* 取消原有背景，改为内容区控制 */
+    border: none; /* 取消原有边框 */
+}
+
+/* 系统消息内容：浅灰背景+灰色文字 */
+.message.system .message-content {
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+/* 当前用户消息：靠右对齐（对应原有current-user） */
+.message.current-user {
+    margin-left: auto;
+    margin-right: 0;
+    background-color: transparent; /* 取消原有背景，改为内容区控制 */
+    border: none; /* 取消原有边框 */
+}
+
+/* 其他用户消息：靠左对齐（对应原有other-user） */
+.message.other-user {
+    margin-right: auto;
+    margin-left: 0;
+    background-color: transparent; /* 取消原有背景，改为内容区控制 */
+    border: none; /* 取消原有边框 */
+}
+
+/* 消息头部：时间与用户名两端对齐 */
+.message-header {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 消息内容：气泡样式，统一内边距和圆角 */
+.message-content {
+    padding: 10px 15px;
+    border-radius: 18px;
+    background-color: #e9e9eb; /* 其他用户消息背景 */
+    word-wrap: break-word; /* 保留原有换行逻辑 */
+}
+
+/* 当前用户消息内容：蓝色背景+白色文字 */
+.message.current-user .message-content {
+    background-color: #165DFF;
+    color: white;
+}
+
+/* 输入区域：保留Flex布局，调整边框和间距 */
+.input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background-color: #fff; /* 取消原有浅灰背景，适配新风格 */
+}
+
+/* 输入框：圆角优化+焦点高亮 */
+#InputMessages {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px; /* 圆角优化为胶囊形 */
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s; /* 新增边框颜色过渡 */
+    margin-right: 10px;
+}
+
+/* 输入框焦点状态：蓝色边框 */
+#InputMessages:focus {
+    border-color: #165DFF;
+}
+
+/* 按钮：胶囊形+hover效果优化 */
+button {
+    margin-left: 10px;
+    padding: 12px 20px;
+    background-color: #165DFF;
+    color: white;
+    border: none;
+    border-radius: 25px; /* 圆角优化为胶囊形 */
+    cursor: pointer;
+    transition: background-color 0.3s; /* 新增背景色过渡 */
+    font-size: 1rem;
+}
+
+/* 按钮hover状态：加深蓝色 */
+button:hover {
+    background-color: #0E42D2;
+}
+
+/* 侧边栏标题：下划线分隔 */
+.sidebar-title {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-weight: normal; /* 取消原有加粗，适配新风格 */
+}
+
+/* 在线用户列表：清除默认样式 */
+.user-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 列表项：带在线状态圆点 */
+.user-list li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+/* 在线状态圆点：通过伪元素实现 */
+.user-list li::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #00C853; /* 绿色表示在线 */
+    margin-right: 10px;
+}
+
+/* 响应式适配：移动端垂直排列 */
+@media (max-width: 768px) {
+    .chat-container {
+        flex-direction: column;
+        height: auto; /* 取消固定高度，适配移动端 */
+    }
+    
+    .chat-sidebar {
+        height: 200px; /* 移动端侧边栏固定高度，方便滚动 */
+        margin-top: 20px; /* 与主区域拉开间距 */
+    }
+}
+</style>
+</head>
+<body>
+<!-- 保留原有HTML结构，仅适配CSS样式 -->
+<div class="chat-container">
+    <!-- 聊天区域 -->
+    <div class="chat-main">
+        <div class="chat-header">
+            LOCALHOST的聊天室
+        </div>
+        <ul class="messages" id="messages"></ul>
+        <div class="input-area">
+            <input type="text" id="InputMessages" placeholder="input your message:">
+            <button onclick="sendMessage()">SEND!</button>
+        </div>
+    </div>
+    <!-- 在线用户列表 -->
+    <div class="chat-sidebar">
+        <h3 class="sidebar-title">感谢下列朋友的捧场^_^<br>在线人数：<span id="userCount"></span>/20</h3>
+        <ul class="user-list" id="userList"></ul>
+    </div>
+</div>
+
+<!-- 保留原有JavaScript逻辑，变量名完全不修改 -->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+// 建立连接
+const socket = io();
+
+// 连接成功时触发
+socket.on('connect', () => {
+  console.log('已连接到服务器');
+  // 向服务器发送消息
+  socket.emit('chat', 'Hello, Server!');
+});
+
+// 监听服务器发来的消息
+socket.on('reply', (data) => {
+  console.log('收到服务器回复:', data);
+});
+
+// 定义全局变量（完全保留原有命名）
+let currentUser='';
+const messagesList=document.getElementById('messages');
+const messagesInput=document.getElementById('InputMessages');
+const userList=document.getElementById('userList'); 
+const userCount=document.getElementById('userCount');
+
+// 加入聊天室
+function join(){
+    socket.emit('join',currentUser);
+}
+
+// 发送消息
+function sendMessage(){
+    const content=messagesInput.value.trim();
+    if(content){
+        socket.emit('chat_message',{content:content});
+        console.log('user消息已发送:',{content:content});
+        messagesInput.value="";
+    }
+}
+
+// HTML转义函数
+function escapeHtml(unsafe) {
+    if (!unsafe) return '';
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
+
+// 添加消息到聊天区域界面（保留原有变量名和逻辑）
+function addMessage(username,content,time,type){
+    const li=document.createElement('li');
+    li.className="message "+type; // 类名拼接逻辑不变，适配新CSS的.message基础类
+    // 构建消息HTML（结构不变，适配新CSS的样式层级）
+    li.innerHTML=`
+        <div class="message-header">
+            <span class="username">${username}</span>
+            <span class="time">${time}</span>
+        </div>
+        <div class="message-content">${escapeHtml(content)}</div>
+    `;
+    messagesList.appendChild(li);
+    messagesList.scrollTop=messagesList.scrollHeight;
+}
+
+// 输入用户名函数
+function promptUsername(){
+    let name=prompt('请 put 您的称呼,不能留白哦:');
+    while(!name || name.trim()===''){
+        name = prompt('不准无名氏加入:(');
+    }
+    currentUser=name.trim();
+    // 保存到本地浏览器
+    localStorage.setItem('chat_username',currentUser);
+}
+
+// 用户加入聊天室（页面加载逻辑不变）
+window.onload=()=>{
+    // 从本地获取用户名
+    const savedName=localStorage.getItem('chat_username');
+    if(savedName){
+        currentUser=savedName;
+        join();
+    }else{
+        // 输入用户名
+        promptUsername();
+        join();
+    }
+    // 回车发送消息
+    messagesInput.addEventListener('keypress',(e)=>{
+        if(e.key==='Enter'){
+            sendMessage();
+        }
+    });
+}
+
+// 更新用户列表（逻辑不变，适配新CSS的列表样式）
+socket.on('user_List',(users)=>{
+    userList.innerHTML='';
+    users.forEach(user=>{
+        const li=document.createElement('li');
+        li.textContent=user;
+        userList.appendChild(li);
+    });
+    userCount.textContent=users.length;
+});
+
+// 接收客户端消息（逻辑不变，type对应新CSS的类名）
+socket.on('receive_message',(data)=>{
+    console.log('收到user消息:', data);
+    const messageType = (data.username === currentUser) ? 'current-user' : 'other-user';
+    addMessage(data.username, data.content, data.time, messageType);
+})
+
+// 接收系统消息（逻辑不变，type为system适配新CSS）
+socket.on('system_message',(data)=>{
+    console.log('收到system消息:', data);
+    addMessage(data.username, data.content, data.time,'system');
+});
+</script>
+</body>
+</html>
