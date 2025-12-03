@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main {
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        img {
+            width: 800px;
+            height: 1000px;
+        }
+        .slider-indication {
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+        .slider-indication .active {
+            background-color: cyan;
+        }
+        .slider-indication li {
+            width: 10px;
+            height: 10px;
+            background-color: #7f8c8d;
+            list-style: none;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .prev-btn {
+            left: 10px;
+        }
+        .next-btn {
+            right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main">
+    <h1>明日方舟终末地轮播图</h1>
+    <div class="content">
+        <img src="chen.2a091fd4.png" alt="陈">
+        <p>陈</p>
+        <button class="slider-btn prev-btn">&lt;</button>
+        <button class="slider-btn next-btn">&gt;</button>
+        <ul class="slider-indication">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+<script>
+    const sliderData = [
+        {url: 'chen.2a091fd4.png', title: '陈', color: ''},
+        {url: 'endministrator1.ec409283.png', title: '管理员1', color: ''},
+        {url: 'endministrator2.1ec20a16.png', title: '管理员2', color: ''},
+        {url: 'laevatain.d0ca2837.png', title: '莱瓦汀', color: ''},
+        {url: 'operator.69ebf0f6.png', title: '操作员', color: ''},
+        {url: 'perlica.b24be972.png', title: '佩里卡', color: ''},
+        {url: 'yvonne.a74396e6.png', title: '伊冯', color: ''},
+    ]
+    const img=document.querySelector('img')
+    const title=document.querySelector('.content p')
+    const indication=document.querySelectorAll('.slider-indication li')
+    function change(index){
+        img.src=sliderData[index].url
+        title.innerHTML=sliderData[index].title
+        indication.forEach((item,i)=>{
+            if(index===i){
+                item.classList.add('active')
+            }else {
+                item.classList.remove('active')
+            }
+        })
+    }
+    let i=0;
+    let timer=setInterval(function () {
+        change(i%indication.length)
+        i++;
+        if(i===indication.length){
+            i=0
+        }
+    },500)
+    indication.forEach((item,i)=>{
+        item.addEventListener('click',()=>{
+            change(i%indication.length)
+            i++;
+            if(i===indication.length){
+                i=0
+            }
+        })
+        item.addEventListener('mouseenter',()=>{
+            clearInterval(timer)
+        })
+        item.addEventListener('mouseleave',()=>{
+            timer=setInterval(function (){
+                change(i%indication.length)
+                i++;
+                if(i===indication.length){
+                    i=0
+                }
+            },500)
+        })
+    })
+    img.addEventListener('mouseenter',()=>{
+        clearInterval(timer)
+    })
+    img.addEventListener('mouseleave',()=>{
+        timer=setInterval(function (){
+            change(i%indication.length)
+            i++;
+            if(i===indication.length){
+                i=0
+            }
+        },500)
+    })
+    const btnLeft=document.querySelector('.prev-btn')
+    const btnRight=document.querySelector('.next-btn')
+    btnLeft.addEventListener('click',()=>{
+
+        change((i+1)%indication.length)
+        i++
+        if(i===indication.length){
+            i=0
+        }
+    })
+    btnRight.addEventListener('click',()=>{
+        change((i-1+indication.length)%indication.length)
+        i--
+        if(i<0){
+            i=indication.length-1
+        }
+    })
+    btnLeft.addEventListener('mouseenter',()=>{
+        clearInterval(timer)
+    })
+    btnLeft.addEventListener('mouseleave',()=>{
+        timer=setInterval(function (){
+            change(i%indication.length)
+            i++;
+            if(i===indication.length){
+                i=0
+            }
+        },500)
+    })
+    btnRight.addEventListener('mouseenter',()=>{
+        clearInterval(timer)
+    })
+    btnRight.addEventListener('mouseleave',()=>{
+        timer=setInterval(function (){
+            change(i%indication.length)
+            i++;
+            if(i===indication.length){
+                i=0
+            }
+        },500)
+    })
+</script>
+</body>
+</html>

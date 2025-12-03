@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .mouse-enter{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .big {
+            transform: scale(1.05);
+        }
+        .mouse-click {
+            width: 100px;
+            height: 100px;
+            background-color: cyan;
+            border-radius: 10px;
+        }
+        .focus-input {
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        .focused {
+            border-color: blue;
+            box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+        }
+        .keyboard-input {
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        .text-input {
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        .event-log {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>事件类型</h1>
+    <ul>
+        <li>鼠标事件
+            <ul>
+                <li>click 鼠标点击</li>
+                <li>mouseenter 鼠标经过</li>
+                <li>mouseleave 鼠标离开</li>
+            </ul>
+            <div class="mouse-click">
+                鼠标点击
+            </div>
+            <div class="mouse-enter">
+                鼠标经过
+            </div></li>
+        <li>焦点事件
+            <ul>
+                <li>focus 获得焦点</li>
+                <li>blur 失去焦点</li>
+            </ul>
+            <input type="text" class="focus-input" placeholder="点击我获得焦点"></li>
+        <li>键盘事件
+            <ul>
+                <li>keydown 键盘按下触发</li>
+                <li>keyup 键盘抬起触发</li>
+            </ul>
+            <input type="text" class="keyboard-input" placeholder="在此输入测试键盘事件"></li>
+        <li>文本事件
+            <ul>
+                <li>input 用户输入事件</li>
+            </ul>
+            <input type="text" class="text-input" placeholder="在此输入测试input事件">
+            <div class="event-log" id="textInputLog">输入内容将显示在这里</div></li>
+    </ul>
+</div>
+<script>
+    //事件类型
+    //师姐你类型分别由鼠标事件，焦点事件，键盘事件，文本事件
+    const mouseClick = document.querySelector('.mouse-click')
+    const mouseEnter = document.querySelector('.mouse-enter')
+    const focusInput = document.querySelector('.focus-input')
+    const keyboardInput = document.querySelector('.keyboard-input')
+    const textInput = document.querySelector('.text-input')
+    const textInputLog = document.getElementById('textInputLog')
+
+    // 鼠标事件
+    mouseClick.addEventListener('click',function () {
+        mouseClick.style.backgroundColor = 'yellow'
+    })
+    mouseEnter.addEventListener('mouseenter',function () {
+        mouseEnter.classList.add('big')
+    })
+    mouseEnter.addEventListener('mouseleave',function () {
+        mouseEnter.classList.remove('big')
+    })
+
+    // 焦点事件
+    focusInput.addEventListener('focus', function() {
+        focusInput.classList.add('focused')
+    })
+
+    focusInput.addEventListener('blur', function() {
+        focusInput.classList.remove('focused')
+    })
+
+    // 键盘事件
+    keyboardInput.addEventListener('keydown', function(event) {
+        console.log('按键按下:', event.key)
+    })
+
+    keyboardInput.addEventListener('keyup', function(event) {
+        console.log('按键抬起:', event.key)
+    })
+
+    // 文本事件
+    textInput.addEventListener('input', function(event) {
+        textInputLog.textContent = '当前输入: ' + event.target.value
+    })
+</script>
+</body>
+</html>
