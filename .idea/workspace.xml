@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50cf665a-6cbe-4dd1-a8a4-8ef8fbce59a2" name="更改" comment="" />
+    <list default="true" id="50cf665a-6cbe-4dd1-a8a4-8ef8fbce59a2" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/11-28.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/chen.2a091fd4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/endministrator1.ec409283.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/endministrator2.1ec20a16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/laevatain.d0ca2837.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/operator.69ebf0f6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/perlica.b24be972.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/yvonne.a74396e6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/事件类型.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/李泽昊/week_2/轮播图完整案例.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/李泽昊/week_1/11-18.md" beforeDir="false" afterPath="$PROJECT_DIR$/李泽昊/week_1/11-18.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +36,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;JavaScript 调试.事件类型.html.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
@@ -42,8 +56,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-WS-252.25557.126" />
       </set>
     </attachedChunks>
   </component>
@@ -67,6 +80,11 @@
       <workItem from="1763431499884" duration="1022000" />
       <workItem from="1763447962241" duration="2962000" />
       <workItem from="1763537907522" duration="1105000" />
+      <workItem from="1764742644271" duration="1448000" />
+      <workItem from="1764747010029" duration="765000" />
+      <workItem from="1764748015120" duration="540000" />
+      <workItem from="1764748721782" duration="78000" />
+      <workItem from="1764749280995" duration="2280000" />
     </task>
     <servers />
   </component>
